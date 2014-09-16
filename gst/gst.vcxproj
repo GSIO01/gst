@@ -10,6 +10,22 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\event\events.h" />
+    <ClInclude Include="..\src\event\listener.h" />
+    <ClInclude Include="..\src\event\manager.h" />
+    <ClInclude Include="..\src\event\parameter.h" />
+    <ClInclude Include="..\src\event\qevent.h" />
+    <ClInclude Include="..\src\event\queue.h" />
+    <ClInclude Include="..\src\types\any.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\event\listener.cpp" />
+    <ClCompile Include="..\src\event\manager.cpp" />
+    <ClCompile Include="..\src\event\parameter.cpp" />
+    <ClCompile Include="..\src\event\qevent.cpp" />
+    <ClCompile Include="..\src\event\queue.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BBB793BE-F768-40EA-80D8-9A98FE2977F1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -77,9 +93,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\src\any.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

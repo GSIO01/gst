@@ -13,10 +13,54 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\types">
+      <UniqueIdentifier>{b4636b95-fdb3-4723-a77f-9e924880d881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\event">
+      <UniqueIdentifier>{e4c5ae38-e3b5-483a-9bd2-c69e7e3c2b6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\event">
+      <UniqueIdentifier>{68273eca-b0df-4901-88c7-fa99defb106d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\any.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\event\events.h">
+      <Filter>Header Files\event</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\event\listener.h">
+      <Filter>Header Files\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\event\manager.h">
+      <Filter>Header Files\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\event\parameter.h">
+      <Filter>Header Files\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\event\qevent.h">
+      <Filter>Header Files\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\event\queue.h">
+      <Filter>Header Files\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\types\any.hpp">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\event\listener.cpp">
+      <Filter>Source Files\event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\event\manager.cpp">
+      <Filter>Source Files\event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\event\parameter.cpp">
+      <Filter>Source Files\event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\event\qevent.cpp">
+      <Filter>Source Files\event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\event\queue.cpp">
+      <Filter>Source Files\event</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
