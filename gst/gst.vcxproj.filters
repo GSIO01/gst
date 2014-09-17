@@ -22,6 +22,12 @@
     <Filter Include="Source Files\event">
       <UniqueIdentifier>{68273eca-b0df-4901-88c7-fa99defb106d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\fsm">
+      <UniqueIdentifier>{14428948-3cfa-414e-a69b-76b64df0bcc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fsm">
+      <UniqueIdentifier>{a56fecb5-d6cc-4ed8-ae4e-a69d081c54d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\event\events.h">
@@ -45,6 +51,12 @@
     <ClInclude Include="..\src\types\any.hpp">
       <Filter>Header Files\types</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\fsm\fevent.h">
+      <Filter>Header Files\fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\fsm\parameter.h">
+      <Filter>Header Files\fsm</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\event\listener.cpp">
@@ -61,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="..\src\event\queue.cpp">
       <Filter>Source Files\event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\fsm\parameter.cpp">
+      <Filter>Source Files\fsm</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
