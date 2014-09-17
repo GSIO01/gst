@@ -24,8 +24,8 @@
  *
  */
 
-#ifndef EVENTS_H
-#define	EVENTS_H
+#ifndef _GST_EVENT_EVENTS_H
+#define	_GST_EVENT_EVENTS_H
 
 /* Required includes */
 #include <functional>
@@ -76,5 +76,5 @@ namespace gst {
 	}
 }
 
-#endif	/* EVENTS_H */
+#endif	/* _GST_EVENT_EVENTS_H */
 

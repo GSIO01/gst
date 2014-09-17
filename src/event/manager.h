@@ -24,8 +24,8 @@
  *
  */
 
-#ifndef MANAGER_H
-#define	MANAGER_H
+#ifndef _GST_EVENT_MANAGER_H
+#define	_GST_EVENT_MANAGER_H
 
 #include <list>
 
@@ -60,5 +60,5 @@ namespace gst {
 	}
 }
 
-#endif	/* MANAGER_H */
+#endif	/* _GST_EVENT_MANAGER_H */
 

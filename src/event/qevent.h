@@ -24,8 +24,8 @@
  *
  */
 
-#ifndef QEVENT_H
-#define	QEVENT_H
+#ifndef _GST_EVENT_QEVENT_H
+#define	_GST_EVENT_QEVENT_H
 
 #include <map>
 #include <string>
@@ -71,5 +71,5 @@ namespace gst {
 	}
 }
 
-#endif	/* QEVENT_H */
+#endif	/* _GST_EVENT_QEVENT_H */
 

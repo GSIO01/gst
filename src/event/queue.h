@@ -24,8 +24,8 @@
  *
  */
 
-#ifndef QUEUE_H
-#define	QUEUE_H
+#ifndef _GST_EVENT_QUEUE_H
+#define	_GST_EVENT_QUEUE_H
 
 #include <list>
 
@@ -57,5 +57,5 @@ namespace gst {
 	}
 }
 
-#endif	/* QUEUE_H */
+#endif	/* _GST_EVENT_QUEUE_H */
 

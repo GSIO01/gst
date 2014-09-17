@@ -1,5 +1,5 @@
-#ifndef _ANY_H
-#define _ANY_H
+#ifndef _GST_TYPES_ANY_H
+#define _GST_TYPES_ANY_H
 
 /*
 *
@@ -126,4 +126,4 @@ namespace gst {
 
 }
 
-#endif /* _ANY_H */
+#endif /* _GST_TYPES_ANY_H */

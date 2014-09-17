@@ -24,8 +24,8 @@
 *
 */
 
-#ifndef _FSM_PARAMETER_H
-#define _FSM_PARAMETER_H
+#ifndef _GST_FSM_PARAMETER_H
+#define _GST_FSM_PARAMETER_H
 
 #include "../types/any.hpp"
 
@@ -49,4 +49,4 @@ namespace gst {
 	}
 }
 
-#endif /* _FSM_PARAMETER_H */
+#endif /* _GST_FSM_PARAMETER_H */

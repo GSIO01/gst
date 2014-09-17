@@ -1,6 +1,6 @@
-#ifndef _FEVENT_H
-#define _FEVENT_H
+#ifndef _GST_GSM_FEVENT_H
+#define _GST_GSM_FEVENT_H
 
 
 
-#endif /* _FEVENT_H */
+#endif /* _GST_GSM_FEVENT_H */

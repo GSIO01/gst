@@ -23,8 +23,8 @@
  * THE SOFTWARE.
  *
  */
-#ifndef LISTENER_H
-#define	LISTENER_H
+#ifndef _GST_EVENT_LISTENER_H
+#define	_GST_EVENT_LISTENER_H
 
 #include "qevent.h"
 #include "queue.h"
@@ -54,5 +54,5 @@ namespace gst {
 	}
 }
 
-#endif	/* LISTENER_H */
+#endif	/* _GST_EVENT_LISTENER_H */
 

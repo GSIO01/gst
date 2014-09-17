@@ -24,8 +24,8 @@
  *
  */
 
-#ifndef EVENT_PARAMETER_H
-#define	EVENT_PARAMETER_H
+#ifndef _GST_EVENT_PARAMETER_H
+#define	_GST_EVENT_PARAMETER_H
 
 #include "../types/any.hpp"
 
@@ -49,5 +49,5 @@ namespace gst {
 	}
 }
 
-#endif	/* EVENT_PARAMETER_H */
+#endif	/* _GST_EVENT_PARAMETER_H */
 
