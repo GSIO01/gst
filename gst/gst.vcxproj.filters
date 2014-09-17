@@ -54,6 +54,12 @@
     <ClInclude Include="..\src\fsm\transition.h">
       <Filter>Header Files\fsm</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\fsm\fsm.h">
+      <Filter>Header Files\fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\fsm\mashine.h">
+      <Filter>Header Files\fsm</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\event\listener.cpp">
@@ -69,6 +75,9 @@
       <Filter>Source Files\event</Filter>
     </ClCompile>
     <ClCompile Include="..\src\fsm\fevent.cpp">
+      <Filter>Source Files\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\fsm\mashine.cpp">
       <Filter>Source Files\fsm</Filter>
     </ClCompile>
   </ItemGroup>
