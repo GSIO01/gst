@@ -28,6 +28,12 @@
     <Filter Include="Source Files\fsm">
       <UniqueIdentifier>{a56fecb5-d6cc-4ed8-ae4e-a69d081c54d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\tree">
+      <UniqueIdentifier>{1dd01c5e-d3ed-47cf-9fb1-d33ed7e472bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tree">
+      <UniqueIdentifier>{d7ece34e-9e5b-4159-8f73-cfd759041741}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\event\events.h">
@@ -60,6 +66,9 @@
     <ClInclude Include="..\src\fsm\mashine.h">
       <Filter>Header Files\fsm</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\tree\btree.h">
+      <Filter>Header Files\tree</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\event\listener.cpp">
@@ -79,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="..\src\fsm\mashine.cpp">
       <Filter>Source Files\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tree\btree.cpp">
+      <Filter>Source Files\tree</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

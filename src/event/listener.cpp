@@ -48,7 +48,7 @@ namespace gst {
 			return *this;
 		}
 
-		const queue& listener::getQueue() {
+		const queue& listener::getQueue() const {
 			return m_queue;
 		}
 

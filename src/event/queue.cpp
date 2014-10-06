@@ -62,7 +62,7 @@ namespace gst {
 			return m_event;
 		}
 
-		const std::list<qevent>& queue::getQueue() {
+		const std::list<qevent>& queue::getQueue() const {
 			return m_queue;
 		}
 
