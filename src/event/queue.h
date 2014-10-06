@@ -45,7 +45,7 @@ namespace gst {
 			void clear();
 			void push(const qevent& ev);
 			qevent& pop();
-			const std::list<qevent>& getQueue();
+			const std::list<qevent>& getQueue() const;
 
 			queue& operator <<(const qevent& ev);
 			queue& operator >>(qevent& ev);

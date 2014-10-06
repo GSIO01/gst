@@ -41,7 +41,7 @@ namespace gst {
 
 			void appendQueue(const queue& q);
 			void queueEvent(const qevent& ev);
-			const queue& getQueue();
+			const queue& getQueue() const;
 			virtual void registerEvents() = 0;
 			virtual void progressEvents() = 0;
 			unsigned long id() const;
