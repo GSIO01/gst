@@ -52,7 +52,8 @@ namespace gst {
 		any(const value_type& value) : content(new holder<value_type>(value)) {
 		}
 
-		any& swap(any& rhs) {
+		any& swap(any rhs) {
+
 			std::swap(content, rhs.content);
 			return *this;
 		}
@@ -83,7 +84,7 @@ namespace gst {
 
 		template<typename value_type>
 		const value_type* to_ptr() const {
-			return type_info() == typeid(value_type) ? &static_cast<holder<value_type> *>(content)->held : 0;
+			return type_info() == typeid(value_type) ? &static_cast<holder<value_type> *>(content)->held : nullptr;
 		}
 
 		private:
