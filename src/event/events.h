@@ -30,13 +30,13 @@
 /* Required includes */
 #include <functional>
 
-#define EVENT_REGISTER(EVENT_ID, EVENT_HANDLER) m_eventMap.insert(std::make_pair(EVENT_ID, std::bind(EVENT_HANDLER, this, std::placeholders::_1)));
+#define EVENT_REGISTER(EVENT_ID, EVENT_HANDLER) m_eventMap[EVENT_ID] = std::bind(EVENT_HANDLER, this, std::placeholders::_1);
 #define EVENT_DECLARE(CLASSNAME) private: \
 										 std::map<gst::event::event_id, gst::event::function_ptr> m_eventMap; \
                                  public: \
                                           virtual void progressEvents(); \
                                           virtual void registerEvents();
-#define EVENT_IMPLEMENT(CLASSNAME) void test_class::progressEvents() { \
+#define EVENT_IMPLEMENT(CLASSNAME) void CLASSNAME::progressEvents() { \
 										\
 										if (m_eventMap.empty()) { \
 											return; \
