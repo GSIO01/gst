@@ -29,12 +29,23 @@
 namespace gst {
 	namespace event {
 
-		parameter::parameter(const any& data) :
-			m_data(data) {
+		parameter::parameter() {
 		}
 
-		parameter::parameter(const parameter& other) :
-			m_data(other.m_data) {
+		parameter::parameter(const any& data)
+			: m_data(data) {
+		}
+
+		parameter::parameter(const parameter& other)
+			: m_data(other.m_data)
+			, m_name(other.m_name)
+			, m_description(other.m_description) {
+		}
+
+		parameter::parameter(const std::string& name, const std::string& description, const any& data /* = any() */)
+			: m_data(data)
+			, m_name(name)
+			, m_description(description) {
 		}
 
 		parameter::~parameter() {
@@ -42,6 +53,8 @@ namespace gst {
 
 		parameter& parameter::operator =(const parameter& other) {
 			m_data = other.m_data;
+			m_name = other.m_name;
+			m_description = other.m_description;
 
 			return *this;
 		}

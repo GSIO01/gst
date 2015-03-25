@@ -27,24 +27,42 @@
 #ifndef _GST_EVENT_PARAMETER_H
 #define	_GST_EVENT_PARAMETER_H
 
+#include <string>
+
 #include "../types/any.hpp"
 
 namespace gst {
 	namespace event {
 
 		class parameter {
-			public:
+		public:
+			parameter();
 			parameter(const any& data);
 			parameter(const parameter& other);
+			parameter(const std::string& name, const std::string& description, const any& data = any());
 			virtual ~parameter();
 			parameter& operator =(const parameter& other);
 
-			const any& data() {
-				return m_data;
-			}
-			private:
+			const any& data() const;
+			const std::string& name() const;
+			const std::string& description() const;
+		private:
 			any m_data;
+			std::string m_name;
+			std::string m_description;
 		};
+
+		inline const any& parameter::data() const {
+			return m_data;
+		}
+
+		inline const std::string& parameter::name() const {
+			return m_name;
+		}
+
+		inline const std::string& parameter::description() const {
+			return m_description;
+		}
 
 	}
 }

@@ -34,7 +34,7 @@ namespace gst {
 
 		class listener {
 			public:
-			listener(unsigned long id = 0);
+			listener(qevent::target_id id = 0);
 			listener(const listener& other);
 			virtual ~listener();
 			listener& operator =(const listener& other);
@@ -44,11 +44,11 @@ namespace gst {
 			const queue& getQueue() const;
 			virtual void registerEvents() = 0;
 			virtual void progressEvents() = 0;
-			unsigned long id() const;
-			void setID(unsigned long id);
+			qevent::target_id id() const;
+			void setID(qevent::target_id id);
 			protected:
 			queue m_queue;
-			unsigned long m_id;
+			qevent::target_id m_id;
 		};
 
 	}

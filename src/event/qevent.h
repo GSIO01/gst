@@ -29,44 +29,79 @@
 
 #include <map>
 #include <string>
+#include <initializer_list>
+#include <cinttypes>
 
 #include "../types/any.hpp"
 #include "events.h"
+#include "parameter.h"
 
 namespace gst {
 	namespace event {
 
 		class qevent {
-			public:
-			qevent(event_id evID, unsigned long targetID = 0);
+		public:
+			typedef uint64_t event_id;
+			typedef uint64_t target_id;
+
+			qevent(event_id evID, target_id targetID = 0, const std::initializer_list<std::pair<std::string, parameter> >& parameters = std::initializer_list<std::pair<std::string, parameter> >());
 			qevent(const qevent& other);
 			virtual ~qevent();
 			qevent& operator =(const qevent& other);
 
 			event_id eventID() const;
 
-			unsigned long targetID() const;
+			target_id targetID() const;
 
 			void setParameter(const std::string& name, const any& data);
 
 			template<typename T>
-			T parameter(const char* name) const {
+			T param(const char* name) const {
 				std::string sname(name);
 
-				return gst::any_cast<T>(m_parameters.at(sname));
+        return gst::any_cast<T>(m_parameters.at(sname).data());
 			}
 
 			template<typename T>
-			T parameter(const std::string& name) const {
+			T param(const std::string& name) const {
 
-				return gst::any_cast<T>(m_parameters.at(name));
+				return gst::any_cast<T>(m_parameters.at(name).data());
 			}
 
-			private:
-			std::map<std::string, any> m_parameters;
+			const std::string& name() const;
+			const std::string& description() const;
+
+		private:
+			std::map<std::string, parameter> m_parameters;
 			event_id m_eventID;
-			unsigned long m_targetID;
+			target_id m_targetID;
+			std::string m_name;
+			std::string m_description;
 		};
+
+		inline const std::string& qevent::name() const {
+			return m_name;
+		}
+
+		inline const std::string& qevent::description() const {
+			return m_description;
+		}
+
+		inline void qevent::setParameter(const std::string& name, const any& data) {
+			if (name.empty()) {
+				return;
+			}
+
+			m_parameters[name] = data;
+		}
+
+		inline qevent::event_id qevent::eventID() const {
+			return m_eventID;
+		}
+
+		inline qevent::target_id qevent::targetID() const {
+			return m_targetID;
+		}
 
 	}
 }

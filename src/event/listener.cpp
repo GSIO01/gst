@@ -29,7 +29,7 @@
 namespace gst {
 	namespace event {
 
-		listener::listener(unsigned long id) :
+		listener::listener(qevent::target_id id) :
 			m_id(id) {
 		}
 
@@ -56,11 +56,11 @@ namespace gst {
 			m_queue.push(ev);
 		}
 
-		unsigned long listener::id() const {
+		qevent::target_id listener::id() const {
 			return m_id;
 		}
 
-		void listener::setID(unsigned long id) {
+		void listener::setID(qevent::target_id id) {
 			m_id = id;
 		}
 

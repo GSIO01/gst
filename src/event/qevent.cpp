@@ -29,9 +29,13 @@
 namespace gst {
 	namespace event {
 
-		qevent::qevent(event_id evID, unsigned long targetID) :
-			m_eventID(evID),
-			m_targetID(targetID) {
+		qevent::qevent(event_id evID, target_id targetID, const std::initializer_list<std::pair<std::string, parameter> >& parameters) 
+			: m_eventID(evID)
+			, m_targetID(targetID)
+		{
+			for (const auto& pair : parameters) {
+				m_parameters.insert(pair);
+			}
 		}
 
 		qevent::qevent(const qevent& other) :
@@ -49,22 +53,6 @@ namespace gst {
 			m_parameters = other.m_parameters;
 
 			return *this;
-		}
-
-		void qevent::setParameter(const std::string& name, const any& data) {
-			if (name.empty()) {
-				return;
-			}
-
-			m_parameters[name] = data;
-		}
-
-		event_id qevent::eventID() const {
-			return m_eventID;
-		}
-
-		unsigned long qevent::targetID() const {
-			return m_targetID;
 		}
 
 	}

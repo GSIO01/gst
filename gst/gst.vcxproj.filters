@@ -66,6 +66,9 @@
     <ClInclude Include="..\src\fsm\mashine.h">
       <Filter>Header Files\fsm</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\event\parameter.h">
+      <Filter>Header Files\event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\event\listener.cpp">
@@ -85,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="..\src\fsm\mashine.cpp">
       <Filter>Source Files\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\event\parameter.cpp">
+      <Filter>Source Files\event</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

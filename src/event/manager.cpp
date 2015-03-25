@@ -29,18 +29,21 @@
 namespace gst {
 	namespace event {
 
-		manager::manager() {
+		manager::manager() 
+			: m_nextId(1) {
 		}
 
-		manager::manager(const manager& other) :
-			m_queue(other.m_queue),
-			m_listListeners(other.m_listListeners) {
+		manager::manager(const manager& other) 
+			: m_nextId(other.m_nextId)
+			, m_queue(other.m_queue)
+			, m_listListeners(other.m_listListeners) {
 		}
 
 		manager::~manager() {
 		}
 
 		manager& manager::operator =(const manager& other) {
+			m_nextId = other.m_nextId;
 			m_listListeners = other.m_listListeners;
 			m_queue = other.m_queue;
 
@@ -54,6 +57,8 @@ namespace gst {
 				}
 			}
 
+			l->setID(m_nextId);
+			m_nextId++;
 			m_listListeners.insert(m_listListeners.end(), l);
 		}
 

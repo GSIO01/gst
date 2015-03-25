@@ -54,6 +54,7 @@ namespace gst {
 			manager& operator >>(listener* l);
 			private:
 			queue m_queue;
+			uint64_t m_nextId;
 			std::list<listener*> m_listListeners;
 		};
 
