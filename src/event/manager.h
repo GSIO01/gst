@@ -29,6 +29,7 @@
 
 #include <list>
 
+#include "../tools/api.h"
 #include "qevent.h"
 #include "queue.h"
 #include "listener.h"
@@ -36,7 +37,7 @@
 namespace gst {
 	namespace event {
 
-		class manager {
+		class GSTAPI manager {
 			public:
 			manager();
 			manager(const manager& orig);

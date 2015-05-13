@@ -59,6 +59,12 @@ namespace gst {
 			return *this;
 		}
 
+    parameter& parameter::operator=(const any& other)
+    {
+      m_data = other;
+
+      return *this;
+    }
 	}
 }
 

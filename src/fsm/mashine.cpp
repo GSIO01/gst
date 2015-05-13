@@ -29,15 +29,15 @@
 namespace gst {
 	namespace fsm {
 
-		mashine::mashine(fsm_state state, const transition_table& transition_tab) :
-			m_state(state),
-			m_transitiontable(transition_tab)
+		mashine::mashine(fsm_state state, const transition_table& transition_tab) 
+      : m_transitiontable(transition_tab)
+			, m_state(state)
 		{
 		}
 
-		mashine::mashine(const mashine& other) :
-			m_state(other.m_state),
-			m_transitiontable(other.m_transitiontable)
+		mashine::mashine(const mashine& other) 
+      :	m_transitiontable(other.m_transitiontable)
+			, m_state(other.m_state)
 		{
 		}
 
@@ -64,7 +64,7 @@ namespace gst {
 		}
 
 		bool mashine::processEvent(const fevent& ev) {
-			for (const transition& tr : m_transitiontable) {
+			for (auto& tr : m_transitiontable) {
 				if (tr.state == m_state && tr.ev == ev.id()) {
 					m_state = tr.new_state;
 					tr.handeler(ev);

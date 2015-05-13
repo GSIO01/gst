@@ -27,10 +27,8 @@
 #ifndef _GST_EVENT_EVENTS_H
 #define	_GST_EVENT_EVENTS_H
 
-/* Required includes */
 #include <string>
 #include <vector>
-
 
 #define EVENT_MAPSTART(CLASSNAME) const CLASSNAME::TEventMapEntry CLASSNAME::s_eventMap[] = {
 #define EVENT_MAPEND }

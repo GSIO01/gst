@@ -29,19 +29,21 @@
 
 #include <string>
 
+#include "../tools/api.h"
 #include "../types/any.hpp"
 
 namespace gst {
 	namespace event {
 
-		class parameter {
+		class GSTAPI parameter {
 		public:
 			parameter();
-			parameter(const any& data);
+		  explicit parameter(const any& data);
 			parameter(const parameter& other);
 			parameter(const std::string& name, const std::string& description, const any& data = any());
 			virtual ~parameter();
 			parameter& operator =(const parameter& other);
+      parameter& operator =(const any& other);
 
 			const any& data() const;
 			const std::string& name() const;

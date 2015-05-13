@@ -25,6 +25,7 @@
  */
 
 #include "queue.h"
+#include "events.h"
 
 namespace gst {
 	namespace event {

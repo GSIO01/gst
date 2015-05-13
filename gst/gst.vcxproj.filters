@@ -34,6 +34,9 @@
     <Filter Include="Source Files\tree">
       <UniqueIdentifier>{d7ece34e-9e5b-4159-8f73-cfd759041741}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\tools">
+      <UniqueIdentifier>{88a62a39-759d-4cae-a9f0-46266ddd27a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\event\events.h">
@@ -68,6 +71,9 @@
     </ClInclude>
     <ClInclude Include="..\src\event\parameter.h">
       <Filter>Header Files\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tools\api.h">
+      <Filter>Header Files\tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

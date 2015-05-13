@@ -29,15 +29,15 @@
 namespace gst {
 	namespace fsm {
 
-		fevent::fevent(event_id id, const std::map<std::string, any>& parameters) :
-			m_id(id),
-			m_parameters(parameters)
+		fevent::fevent(event_id id, const std::map<std::string, any>& parameters) 
+      : m_parameters(parameters)
+      ,	m_id(id)
 		{
 		}
 
-		fevent::fevent(const fevent& other) :
-			m_id(other.m_id),
-			m_parameters(other.m_parameters)
+		fevent::fevent(const fevent& other) 
+      :	m_parameters(other.m_parameters)
+			, m_id(other.m_id)
 		{
 		}
 

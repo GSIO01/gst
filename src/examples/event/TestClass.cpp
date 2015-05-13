@@ -10,7 +10,7 @@ EVENT_MAPEND;
 EVENT_IMPLEMENT(TestClass);
 
 
-void TestClass::EventHandler1(const gst::event::qevent& ev)
+void TestClass::EventHandler1(const gst::event::qevent& /*ev*/)
 {
   std::cout << "Listener: " << m_id << " Event 1" << std::endl;
 }

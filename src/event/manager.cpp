@@ -34,8 +34,8 @@ namespace gst {
 		}
 
 		manager::manager(const manager& other) 
-			: m_nextId(other.m_nextId)
-			, m_queue(other.m_queue)
+			: m_queue(other.m_queue)
+			, m_nextId(other.m_nextId)
 			, m_listListeners(other.m_listListeners) {
 		}
 
@@ -51,7 +51,7 @@ namespace gst {
 		}
 
 		void manager::registerListener(listener* l) {
-			for (listener* n : m_listListeners) {
+			for (auto n : m_listListeners) {
 				if (n == l) {
 					return;
 				}
@@ -72,7 +72,7 @@ namespace gst {
 
 		void manager::progressEvents() {
 
-			for (listener* l : m_listListeners) {
+			for (auto l : m_listListeners) {
 				l->appendQueue(m_queue);
 				l->progressEvents();
 			}
@@ -97,7 +97,7 @@ namespace gst {
 		}
 
 		manager& manager::operator <<(const queue& q) {
-			queue n = q;
+		  auto n = q;
 
 			while (n.empty() == false) {
 				m_queue.push(n.pop());

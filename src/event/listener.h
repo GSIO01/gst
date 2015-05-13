@@ -26,15 +26,16 @@
 #ifndef _GST_EVENT_LISTENER_H
 #define	_GST_EVENT_LISTENER_H
 
+#include "../tools/api.h"
 #include "qevent.h"
 #include "queue.h"
 
 namespace gst {
 	namespace event {
 
-		class listener {
+		class GSTAPI listener {
 			public:
-			listener(qevent::target_id id = 0);
+		  explicit listener(qevent::target_id id = 0);
 			listener(const listener& other);
 			virtual ~listener();
 			listener& operator =(const listener& other);

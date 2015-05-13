@@ -65,7 +65,7 @@ namespace gst {
 		}
 
 		void listener::appendQueue(const queue& q) {
-			queue t = q;
+		  auto t = q;
 
 			while (t.empty() == false) {
 				m_queue.push(t.pop());

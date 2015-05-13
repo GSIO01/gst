@@ -28,23 +28,22 @@
 #define	_GST_EVENT_QEVENT_H
 
 #include <map>
-#include <string>
 #include <initializer_list>
 #include <cinttypes>
 
+#include "../tools/api.h"
 #include "../types/any.hpp"
-#include "events.h"
 #include "parameter.h"
 
 namespace gst {
 	namespace event {
 
-		class qevent {
+		class GSTAPI qevent {
 		public:
 			typedef uint64_t event_id;
 			typedef uint64_t target_id;
 
-			qevent(event_id evID, target_id targetID = 0, const std::initializer_list<std::pair<std::string, parameter> >& parameters = std::initializer_list<std::pair<std::string, parameter> >());
+		  explicit qevent(event_id evID, target_id targetID = 0, const std::initializer_list<std::pair<std::string, parameter> >& parameters = std::initializer_list<std::pair<std::string, parameter> >());
 			qevent(const qevent& other);
 			virtual ~qevent();
 			qevent& operator =(const qevent& other);

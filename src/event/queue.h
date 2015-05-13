@@ -29,12 +29,13 @@
 
 #include <list>
 
+#include "../tools/api.h"
 #include "qevent.h"
 
 namespace gst {
 	namespace event {
 
-		class queue {
+		class GSTAPI queue {
 			public:
 			queue();
 			queue(const queue& other);

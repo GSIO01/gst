@@ -29,6 +29,7 @@
 
 #include <map>
 
+#include "../tools/api.h"
 #include "../types/any.hpp"
 
 namespace gst {
@@ -42,7 +43,7 @@ namespace gst {
 		/**
 		 * @brief A event for the finate state mashine.
 		 */
-		class fevent
+		class GSTAPI fevent
 		{
 		public:
 		/**
@@ -50,7 +51,7 @@ namespace gst {
 		 * @param id The event id.
 		 * @param parameters Optional parameters.
 		 */
-		fevent(event_id id = 0, const std::map<std::string, any>& parameters = std::map<std::string, any>());
+		  explicit fevent(event_id id = 0, const std::map<std::string, any>& parameters = std::map<std::string, any>());
 
 		/**
 		 * @brief Copy constructor.

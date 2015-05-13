@@ -38,10 +38,10 @@ namespace gst {
 			}
 		}
 
-		qevent::qevent(const qevent& other) :
-			m_eventID(other.m_eventID),
-			m_targetID(other.m_targetID),
-			m_parameters(other.m_parameters) {
+		qevent::qevent(const qevent& other) 
+      :	m_parameters(other.m_parameters)
+      ,	m_eventID(other.m_eventID)
+      , m_targetID(other.m_targetID) {
 		}
 
 		qevent::~qevent() {

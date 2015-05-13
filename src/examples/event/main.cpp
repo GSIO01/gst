@@ -8,8 +8,6 @@
 
 #include "TestClass.h"
 
-#include "../../types/any.hpp"
-
 int32_t main(int32_t argc, char* argv[]) {
 	gst::event::manager man;
 	TestClass tc, tc2;
