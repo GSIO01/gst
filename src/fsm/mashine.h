@@ -46,18 +46,28 @@ namespace gst
       /**
        * @brief Constructor.
        */
-      explicit mashine(fsm_state state = 0, const transition_table& transition_tab = transition_table());
+      explicit mashine::mashine(fsm_state state, const transition_table& transition_tab)
+        : m_transitiontable(transition_tab)
+        , m_state(state)
+      {
+      }
 
       /**
        * @brief Copy constructor.
        * @param other Object to copy.
        */
-      mashine(const mashine& other);
+      mashine::mashine(const mashine& other)
+        : m_transitiontable(other.m_transitiontable)
+        , m_state(other.m_state)
+      {
+      }
 
       /**
        * @brief Destructor.
        */
-      virtual ~mashine();
+      virtual ~mashine()
+      {
+      }
 
       /**
        * @brief Assignment operator.
@@ -67,22 +77,31 @@ namespace gst
       mashine& operator =(const mashine& other);
 
       /**
-       * @brief Get the current state of the finate state mashine.
+       * @brief Get the current state of the finite state mashine.
        * @return Current state.
        */
-      fsm_state state() const;
+      fsm_state state() const
+      {
+        return m_state;
+      }
 
       /**
        * @brief Change the state of the fsm.
        * @param state New state.
        */
-      void setState(fsm_state state);
+      void setState(fsm_state state)
+      {
+        m_state = state;
+      }
 
       /**
        * @brief Replace the transition table of the fsm.
        * @param transition_tab New transition table.
        */
-      void setTransitionTable(const transition_table& transition_tab);
+      void setTransitionTable(const transition_table& transition_tab)
+      {
+        m_transitiontable = transition_tab;
+      }
 
       /**
        * @brief Process an event.

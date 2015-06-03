@@ -32,87 +32,104 @@
 #include "../tools/api.h"
 #include "../types/any.hpp"
 
-namespace gst {
-	namespace fsm {
+namespace gst
+{
+  namespace fsm
+  {
 
-		/**
-		 * @brief Event id.
-		 */
-		typedef unsigned long event_id;
+    /**
+     * @brief Event id.
+     */
+    typedef unsigned long event_id;
 
-		/**
-		 * @brief A event for the finate state mashine.
-		 */
-		class GSTAPI fevent
-		{
-		public:
-		/**
-		 * @brief Contructor.
-		 * @param id The event id.
-		 * @param parameters Optional parameters.
-		 */
-		  explicit fevent(event_id id = 0, const std::map<std::string, any>& parameters = std::map<std::string, any>());
+    /**
+     * @brief A event for the finite state mashine.
+     */
+    class GSTAPI fevent
+    {
+    public:
+      /**
+       * @brief Constructor.
+       * @param id The event id.
+       * @param parameters Optional parameters.
+       */
+      explicit fevent(event_id id = 0, const std::map<std::string, any>& parameters = std::map<std::string, any>())
+        : m_parameters(parameters)
+        , m_id(id)
+      {
+      }
 
-		/**
-		 * @brief Copy constructor.
-		 * @param other Object to copy.
-		 */
-		fevent(const fevent& other);
+      /**
+       * @brief Copy constructor.
+       * @param other Object to copy.
+       */
+      fevent::fevent(const fevent& other)
+        : m_parameters(other.m_parameters)
+        , m_id(other.m_id)
+      {
+      }
 
-		/**
-		 * @brief Destructor.
-		 */
-		virtual ~fevent();
+      /**
+       * @brief Destructor.
+       */
+      virtual ~fevent()
+      {
+      }
 
-		/**
-		 * @brief Assignment operator.
-		 * @param other Object to assign.
-		 * @return This object.
-		 */
-		fevent& operator =(const fevent& other);
+      /**
+       * @brief Assignment operator.
+       * @param other Object to assign.
+       * @return This object.
+       */
+      fevent& operator =(const fevent& other);
 
-		/**
-		 * @brief Get the event id.
-		 * @return Event id.
-		 */
-		event_id id() const;
+      /**
+       * @brief Get the event id.
+       * @return Event id.
+       */
+      event_id id() const
+      {
+        return m_id;
+      }
 
-		/**
-		 * @brief Modify an existing or add a new parameter.
-		 * @param name Parameter name.
-		 * @param data Parameter data.
-		 */
-		void setParameter(const std::string& name, const any& data);
+      /**
+       * @brief Modify an existing or add a new parameter.
+       * @param name Parameter name.
+       * @param data Parameter data.
+       */
+      void setParameter(const std::string& name, const any& data);
 
-		/**
-		 * @brief Extract the value for a parameter.
-		 * @param name Parameter name.
-		 * @return Converted parameter.
-		 */
-		template<typename T>
-		T parameter(const char* name) const {
-			std::string sname(name);
+      /**
+       * @brief Extract the value for a parameter.
+       * @param name Parameter name.
+       * @return Converted parameter.
+       */
+      template<typename T>
+      T parameter(const char* name) const
+      {
+        std::string sname(name);
 
-			return gst::any_cast<T>(m_parameters.at(sname));
-		}
+        return gst::any_cast<T>(m_parameters.at(sname));
+      }
 
-		/**
-		 * @brief Extract the value for a parameter.
-		 * @param name Parameter name.
-		 * @return Converted parameter.
-		 */
-		template<typename T>
-		T parameter(const std::string& name) const {
+      /**
+       * @brief Extract the value for a parameter.
+       * @param name Parameter name.
+       * @return Converted parameter.
+       */
+      template<typename T>
+      T parameter(const std::string& name) const
+      {
 
-			return gst::any_cast<T>(m_parameters.at(name));
-		}
+        return gst::any_cast<T>(m_parameters.at(name));
+      }
 
-		private:
-		std::map<std::string, any> m_parameters;
-		event_id m_id;
-		};
+    private:
+      std::map<std::string, any> m_parameters;
+      event_id m_id;
+    };
 
-	}
+  }
 }
 
 #endif /* _GST_FSM_FEVENT_H */
