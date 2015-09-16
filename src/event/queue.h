@@ -35,7 +35,7 @@
 namespace gst {
 	namespace event {
 
-		class GSTAPI queue {
+		class queue {
 			public:
 			queue();
 			queue(const queue& other);

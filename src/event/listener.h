@@ -33,7 +33,7 @@
 namespace gst {
 	namespace event {
 
-		class GSTAPI listener {
+		class listener {
 			public:
 		  explicit listener(qevent::target_id id = 0);
 			listener(const listener& other);

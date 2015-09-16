@@ -45,7 +45,7 @@ namespace gst
     /**
      * @brief A event for the finite state mashine.
      */
-    class GSTAPI fevent
+    class fevent
     {
     public:
       /**

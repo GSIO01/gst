@@ -75,6 +75,12 @@
     <ClInclude Include="..\src\tools\api.h">
       <Filter>Header Files\tools</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\types\property.hpp">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\types\databuffer.hpp">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\event\listener.cpp">

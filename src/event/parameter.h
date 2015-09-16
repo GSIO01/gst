@@ -35,7 +35,7 @@
 namespace gst {
 	namespace event {
 
-		class GSTAPI parameter {
+		class parameter {
 		public:
 			parameter();
 		  explicit parameter(const any& data);

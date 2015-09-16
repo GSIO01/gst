@@ -40,7 +40,7 @@ namespace gst
     /**
      * @brief Base class for finite state machines.
      */
-    class GSTAPI mashine
+    class mashine
     {
     public:
       /**

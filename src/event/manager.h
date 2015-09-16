@@ -37,7 +37,7 @@
 namespace gst {
 	namespace event {
 
-		class GSTAPI manager {
+		class manager {
 			public:
 			manager();
 			manager(const manager& orig);

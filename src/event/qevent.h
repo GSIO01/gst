@@ -38,7 +38,7 @@
 namespace gst {
 	namespace event {
 
-		class GSTAPI qevent {
+		class qevent {
 		public:
 			typedef uint64_t event_id;
 			typedef uint64_t target_id;

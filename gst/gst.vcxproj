@@ -23,6 +23,8 @@
     <ClInclude Include="..\src\fsm\transition.h" />
     <ClInclude Include="..\src\tools\api.h" />
     <ClInclude Include="..\src\types\any.hpp" />
+    <ClInclude Include="..\src\types\databuffer.hpp" />
+    <ClInclude Include="..\src\types\property.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\event\listener.cpp" />
