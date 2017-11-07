@@ -30,9 +30,9 @@
 #include <map>
 #include <initializer_list>
 #include <cinttypes>
+#include <any>
 
 #include "../tools/api.h"
-#include "../types/any.hpp"
 #include "parameter.h"
 
 namespace gst {
@@ -52,19 +52,19 @@ namespace gst {
 
 			target_id targetID() const;
 
-			void setParameter(const std::string& name, const any& data);
+			void setParameter(const std::string& name, const std::any& data);
 
 			template<typename T>
 			T param(const char* name) const {
 				std::string sname(name);
 
-        return gst::any_cast<T>(m_parameters.at(sname).data());
+        return std::any_cast<T>(m_parameters.at(sname).data());
 			}
 
 			template<typename T>
 			T param(const std::string& name) const {
 
-				return gst::any_cast<T>(m_parameters.at(name).data());
+				return std::any_cast<T>(m_parameters.at(name).data());
 			}
 
 			const std::string& name() const;
@@ -86,7 +86,7 @@ namespace gst {
 			return m_description;
 		}
 
-		inline void qevent::setParameter(const std::string& name, const any& data) {
+		inline void qevent::setParameter(const std::string& name, const std::any& data) {
 			if (name.empty()) {
 				return;
 			}

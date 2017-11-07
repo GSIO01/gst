@@ -32,7 +32,7 @@ namespace gst {
 		parameter::parameter() {
 		}
 
-		parameter::parameter(const any& data)
+		parameter::parameter(const std::any& data)
 			: m_data(data) {
 		}
 
@@ -42,7 +42,7 @@ namespace gst {
 			, m_description(other.m_description) {
 		}
 
-		parameter::parameter(const std::string& name, const std::string& description, const any& data /* = any() */)
+		parameter::parameter(const std::string& name, const std::string& description, const std::any& data /* = any() */)
 			: m_data(data)
 			, m_name(name)
 			, m_description(description) {
@@ -59,7 +59,7 @@ namespace gst {
 			return *this;
 		}
 
-    parameter& parameter::operator=(const any& other)
+    parameter& parameter::operator=(const std::any& other)
     {
       m_data = other;
 

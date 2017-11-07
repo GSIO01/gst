@@ -54,9 +54,6 @@
     <ClInclude Include="..\src\event\queue.h">
       <Filter>Header Files\event</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\types\any.hpp">
-      <Filter>Header Files\types</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\fsm\fevent.h">
       <Filter>Header Files\fsm</Filter>
     </ClInclude>
