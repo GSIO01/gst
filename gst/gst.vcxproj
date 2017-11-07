@@ -22,7 +22,6 @@
     <ClInclude Include="..\src\fsm\mashine.h" />
     <ClInclude Include="..\src\fsm\transition.h" />
     <ClInclude Include="..\src\tools\api.h" />
-    <ClInclude Include="..\src\types\any.hpp" />
     <ClInclude Include="..\src\types\databuffer.hpp" />
     <ClInclude Include="..\src\types\property.hpp" />
   </ItemGroup>
@@ -79,6 +78,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_GSTAPI;_DEBUG;_WINDOWS;_USRDLL;GST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -95,6 +95,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_GSTAPI;NDEBUG;_WINDOWS;_USRDLL;GST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

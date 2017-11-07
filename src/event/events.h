@@ -99,18 +99,13 @@ void CLASSNAME::progressEvents() { \
 } \
 \
 void CLASSNAME::registerEvents() { \
-	for (int i = 0; s_eventMap[i].m_eventHandler != nullptr; i++) { \
-		TEventMapEntry entry = s_eventMap[i]; \
-		\
-		m_eventMap[entry.m_eventID] = entry.m_eventHandler; \
-	} \
+  for(const auto& Entry : s_eventMap) \
+		m_eventMap[Entry.m_eventID] = Entry.m_eventHandler; \
 } \
 std::string CLASSNAME::getEventInfo() { \
 	std::string eventInfo; \
 	\
-	for(int i = 0; s_eventMap[i].m_eventHandler != nullptr; i++) { \
-		TEventMapEntry entry = s_eventMap[i]; \
-		\
+	for(const auto& entry : s_eventMap) { \
 		eventInfo.append(entry.m_name); \
 		eventInfo.append("\n"); \
 		eventInfo.append(entry.m_description); \

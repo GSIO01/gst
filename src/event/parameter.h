@@ -28,9 +28,9 @@
 #define	_GST_EVENT_PARAMETER_H
 
 #include <string>
+#include <any>
 
 #include "../tools/api.h"
-#include "../types/any.hpp"
 
 namespace gst {
 	namespace event {
@@ -38,23 +38,23 @@ namespace gst {
 		class parameter {
 		public:
 			parameter();
-		  explicit parameter(const any& data);
+		  explicit parameter(const std::any& data);
 			parameter(const parameter& other);
-			parameter(const std::string& name, const std::string& description, const any& data = any());
+			parameter(const std::string& name, const std::string& description, const std::any& data = {});
 			virtual ~parameter();
 			parameter& operator =(const parameter& other);
-      parameter& operator =(const any& other);
+      parameter& operator =(const std::any& other);
 
-			const any& data() const;
+			const std::any& data() const;
 			const std::string& name() const;
 			const std::string& description() const;
 		private:
-			any m_data;
+		  std::any m_data;
 			std::string m_name;
 			std::string m_description;
 		};
 
-		inline const any& parameter::data() const {
+		inline const std::any& parameter::data() const {
 			return m_data;
 		}
 

@@ -36,7 +36,7 @@ namespace gst {
 			return *this;
 		}
 
-		void fevent::setParameter(const std::string& name, const any& data) {
+		void fevent::setParameter(const std::string& name, const std::any& data) {
 			m_parameters.insert(std::make_pair(name, data));
 		}
 

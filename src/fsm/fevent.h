@@ -28,9 +28,9 @@
 #define _GST_FSM_FEVENT_H
 
 #include <map>
+#include <any>
 
 #include "../tools/api.h"
-#include "../types/any.hpp"
 
 namespace gst
 {
@@ -53,7 +53,7 @@ namespace gst
        * @param id The event id.
        * @param parameters Optional parameters.
        */
-      explicit fevent(event_id id = 0, const std::map<std::string, any>& parameters = std::map<std::string, any>())
+      explicit fevent(event_id id = 0, const std::map<std::string, std::any>& parameters = {})
         : m_parameters(parameters)
         , m_id(id)
       {
@@ -97,7 +97,7 @@ namespace gst
        * @param name Parameter name.
        * @param data Parameter data.
        */
-      void setParameter(const std::string& name, const any& data);
+      void setParameter(const std::string& name, const std::any& data);
 
       /**
        * @brief Extract the value for a parameter.
@@ -109,7 +109,7 @@ namespace gst
       {
         std::string sname(name);
 
-        return gst::any_cast<T>(m_parameters.at(sname));
+        return std::any_cast<T>(m_parameters.at(sname));
       }
 
       /**
@@ -121,11 +121,11 @@ namespace gst
       T parameter(const std::string& name) const
       {
 
-        return gst::any_cast<T>(m_parameters.at(name));
+        return std::any_cast<T>(m_parameters.at(name));
       }
 
     private:
-      std::map<std::string, any> m_parameters;
+      std::map<std::string, std::any> m_parameters;
       event_id m_id;
     };
 
