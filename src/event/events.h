@@ -2,7 +2,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2014 Walter Julius Hennecke
+ * Copyright (c) 2017 Walter Julius Hennecke
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,30 +24,29 @@
  *
  */
 
-#ifndef _GST_EVENT_EVENTS_H
-#define	_GST_EVENT_EVENTS_H
+#pragma once
 
 #include <string>
 #include <vector>
 
-#define EVENT_MAPSTART(CLASSNAME) const CLASSNAME::TEventMapEntry CLASSNAME::s_eventMap[] = {
+#define EVENT_MAPSTART(CLASSNAME) const CLASSNAME::TEventMapEntry CLASSNAME::s_##CLASSNAME##_eventMap[] = {
 #define EVENT_MAPEND }
 #define EVENT_MAPENTRY(NAME,DESCRIPTION,EVENTID,HANDLER) { NAME, DESCRIPTION, EVENTID, &HANDLER },
 #define EVENT_MAPENTRY_PARM(NAME,DESCRIPTION,EVENTID,HANDLER,PARAMS) { NAME, DESCRIPTION, { PARAMS }, EVENTID, &HANDLER },
 #define EVENT_PARAMETER(NAME,DESCRIPTIOM) { NAME, DESCRIPTIOM },
 
-#define EVENT_DECLARE(CLASSNAME) \
+#define EVENT_DECLARE(CLASSNAME, BASECLASS) \
 public: \
-typedef void(CLASSNAME::*function_ptr)(const gst::event::qevent& ev); \
+typedef void(CLASSNAME::*CLASSNAME##_function_ptr)(const gst::event::qevent& ev); \
 \
 struct TEventMapEntry { \
 	std::string m_name; \
 	std::string m_description; \
 	std::vector<gst::event::parameter> m_parameters; \
 	gst::event::qevent::event_id m_eventID; \
-	function_ptr m_eventHandler; \
+	CLASSNAME##_function_ptr m_eventHandler; \
 	\
-	TEventMapEntry(const std::string& name, const std::string& description, const std::vector<gst::event::parameter>& parameters, gst::event::qevent::event_id eventID, function_ptr eventHandler) \
+	TEventMapEntry(const std::string& name, const std::string& description, const std::vector<gst::event::parameter>& parameters, gst::event::qevent::event_id eventID, CLASSNAME##_function_ptr eventHandler) \
 		: m_name(name) \
 		, m_description(description) \
 		, m_parameters(parameters) \
@@ -55,7 +54,7 @@ struct TEventMapEntry { \
 		, m_eventHandler(eventHandler) { \
 	} \
 	\
-	TEventMapEntry(const std::string& name, const std::string& description, gst::event::qevent::event_id eventID, function_ptr eventHandler) \
+	TEventMapEntry(const std::string& name, const std::string& description, gst::event::qevent::event_id eventID, CLASSNAME##_function_ptr eventHandler) \
 		: m_name(name) \
 		, m_description(description) \
 		, m_eventID(eventID) \
@@ -63,24 +62,28 @@ struct TEventMapEntry { \
 	} \
 }; \
 \
-virtual void progressEvents(); \
-virtual void registerEvents(); \
-std::string getEventInfo(); \
+virtual bool progressEvents() override; \
+virtual void registerEvents() override; \
+virtual std::string getEventInfo() override; \
 private: \
-	static const TEventMapEntry s_eventMap[]; \
-	std::map<gst::event::qevent::event_id, function_ptr> m_eventMap;
+	static const TEventMapEntry s_##CLASSNAME##_eventMap[]; \
+	std::map<gst::event::qevent::event_id, CLASSNAME##_function_ptr> m_##CLASSNAME##_eventMap
 
 
-#define EVENT_IMPLEMENT(CLASSNAME) \
-void CLASSNAME::progressEvents() { \
-	if (m_eventMap.empty()) { \
-		return; \
+#define EVENT_IMPLEMENT(CLASSNAME, BASECLASS) \
+bool CLASSNAME::progressEvents() { \
+  if(BASECLASS::progressEvents()) \
+    return true; \
+  \
+	if (m_##CLASSNAME##_eventMap.empty()) { \
+		return false; \
 	} \
 	\
 	while (m_queue.empty() == false) { \
-		gst::event::qevent ev = m_queue.pop(); \
+		gst::event::qevent ev = m_queue.front(); \
+    m_queue.pop();\
 		\
-		if (ev.eventID() == gst::event::EV_GLOBAL_EMPTY) { \
+		if (ev.eventID() == gst::event::global_events::Empty) { \
 			continue; \
 		} \
 		\
@@ -88,24 +91,30 @@ void CLASSNAME::progressEvents() { \
 			continue; \
 		} \
 		\
-		if (m_eventMap.find(ev.eventID()) == m_eventMap.end()) { \
+		if (m_##CLASSNAME##_eventMap.find(ev.eventID()) == m_##CLASSNAME##_eventMap.end()) { \
 			continue; \
 		} \
 		\
-		auto funcPtr = m_eventMap[ev.eventID()]; \
+		auto funcPtr = m_##CLASSNAME##_eventMap[ev.eventID()]; \
 		\
 		(this->*funcPtr)(ev); \
+    \
+    return true; \
 	} \
+  \
+  return false; \
 } \
 \
 void CLASSNAME::registerEvents() { \
-  for(const auto& Entry : s_eventMap) \
-		m_eventMap[Entry.m_eventID] = Entry.m_eventHandler; \
+  BASECLASS::registerEvents(); \
+  \
+  for(const auto& Entry : s_##CLASSNAME##_eventMap) \
+		m_##CLASSNAME##_eventMap[Entry.m_eventID] = Entry.m_eventHandler; \
 } \
 std::string CLASSNAME::getEventInfo() { \
-	std::string eventInfo; \
+	std::string eventInfo = BASECLASS::getEventInfo(); \
 	\
-	for(const auto& entry : s_eventMap) { \
+	for(const auto& entry : s_##CLASSNAME##_eventMap) { \
 		eventInfo.append(entry.m_name); \
 		eventInfo.append("\n"); \
 		eventInfo.append(entry.m_description); \
@@ -128,19 +137,35 @@ std::string CLASSNAME::getEventInfo() { \
 	} \
 	\
 	return eventInfo; \
-} \
-
-
-namespace gst {
-	namespace event {
-
-		typedef enum {
-			EV_GLOBAL_EMPTY,
-			EV_GLOBAL_MAX
-		} global_events;
-
-	}
 }
 
-#endif	/* _GST_EVENT_EVENTS_H */
+namespace gst::event
+{
+  enum class global_events
+  {
+    Empty,
+    Max
+  };
 
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable : 4244)
+#endif
+
+  template<typename T, typename = std::enable_if_t<std::is_convertible<T, std::underlying_type<global_events>::type>::value>>
+  bool operator ==(T Rhs, global_events Lhs)
+  {
+    const std::underlying_type<global_events>::type ConvertedRhs(Rhs);
+    return ConvertedRhs == static_cast<std::underlying_type<global_events>::type>(Lhs);
+  }
+
+  template<typename T, typename = std::enable_if_t<std::is_convertible<T, std::underlying_type<global_events>::type>::value>>
+  bool operator ==(global_events Rhs, T Lhs)
+  {
+    return Lhs == Rhs;
+  }
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+}

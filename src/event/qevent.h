@@ -2,7 +2,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2014 Walter Julius Hennecke
+ * Copyright (c) 2017 Walter Julius Hennecke
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,7 @@
  *
  */
 
-#ifndef _GST_EVENT_QEVENT_H
-#define	_GST_EVENT_QEVENT_H
+#pragma once
 
 #include <map>
 #include <initializer_list>
@@ -35,75 +34,95 @@
 #include "../tools/api.h"
 #include "parameter.h"
 
-namespace gst {
-	namespace event {
+namespace gst::event
+{
+  class qevent
+  {
+  public:
+    typedef uint64_t event_id;
+    typedef uint64_t target_id;
 
-		class qevent {
-		public:
-			typedef uint64_t event_id;
-			typedef uint64_t target_id;
+    explicit qevent(event_id evID, target_id targetID = 0, const std::initializer_list<std::pair<std::string, parameter>>& parameters = std::initializer_list<std::pair<std::string, parameter>>())
+      : m_eventID(evID)
+      , m_targetID(targetID)
+    {
+      for (const auto& pair : parameters)
+      {
+        m_parameters.insert(pair);
+      }
+    }
 
-		  explicit qevent(event_id evID, target_id targetID = 0, const std::initializer_list<std::pair<std::string, parameter> >& parameters = std::initializer_list<std::pair<std::string, parameter> >());
-			qevent(const qevent& other);
-			virtual ~qevent();
-			qevent& operator =(const qevent& other);
+    qevent(const qevent& Other)
+      : m_parameters{Other.m_parameters}
+      , m_eventID{Other.m_eventID}
+      , m_targetID{Other.m_targetID}
+      , m_name{Other.m_name}
+      , m_description{Other.m_description} {}
 
-			event_id eventID() const;
+    qevent(qevent&& Other) noexcept
+      : m_parameters{std::move(Other.m_parameters)}
+      , m_eventID{Other.m_eventID}
+      , m_targetID{Other.m_targetID}
+      , m_name{std::move(Other.m_name)}
+      , m_description{std::move(Other.m_description)} {}
 
-			target_id targetID() const;
+    qevent& operator=(const qevent& Other)
+    {
+      if (this == &Other)
+        return *this;
+      m_parameters = Other.m_parameters;
+      m_eventID = Other.m_eventID;
+      m_targetID = Other.m_targetID;
+      m_name = Other.m_name;
+      m_description = Other.m_description;
+      return *this;
+    }
 
-			void setParameter(const std::string& name, const std::any& data);
+    qevent& operator=(qevent&& Other) noexcept
+    {
+      if (this == &Other)
+        return *this;
+      m_parameters = std::move(Other.m_parameters);
+      m_eventID = Other.m_eventID;
+      m_targetID = Other.m_targetID;
+      m_name = std::move(Other.m_name);
+      m_description = std::move(Other.m_description);
+      return *this;
+    }
 
-			template<typename T>
-			T param(const char* name) const {
-				std::string sname(name);
+    event_id eventID() const { return m_eventID; }
+    target_id targetID() const { return m_targetID; }
 
-        return std::any_cast<T>(m_parameters.at(sname).data());
-			}
+    void setParameter(const std::string& name, const std::any& data)
+    {
+      if (name.empty())
+        return;
 
-			template<typename T>
-			T param(const std::string& name) const {
+      m_parameters[name] = data;
+    }
 
-				return std::any_cast<T>(m_parameters.at(name).data());
-			}
+    template <typename T>
+    T param(const char* name) const
+    {
+      std::string sname(name);
 
-			const std::string& name() const;
-			const std::string& description() const;
+      return std::any_cast<T>(m_parameters.at(sname).data());
+    }
 
-		private:
-			std::map<std::string, parameter> m_parameters;
-			event_id m_eventID;
-			target_id m_targetID;
-			std::string m_name;
-			std::string m_description;
-		};
+    template <typename T>
+    T param(const std::string& name) const
+    {
+      return std::any_cast<T>(m_parameters.at(name).data());
+    }
 
-		inline const std::string& qevent::name() const {
-			return m_name;
-		}
+    const std::string& name() const { return m_name; }
+    const std::string& description() const { return m_description; }
 
-		inline const std::string& qevent::description() const {
-			return m_description;
-		}
-
-		inline void qevent::setParameter(const std::string& name, const std::any& data) {
-			if (name.empty()) {
-				return;
-			}
-
-			m_parameters[name] = data;
-		}
-
-		inline qevent::event_id qevent::eventID() const {
-			return m_eventID;
-		}
-
-		inline qevent::target_id qevent::targetID() const {
-			return m_targetID;
-		}
-
-	}
+  private:
+    std::map<std::string, parameter> m_parameters;
+    event_id m_eventID;
+    target_id m_targetID;
+    std::string m_name;
+    std::string m_description;
+  };
 }
-
-#endif	/* _GST_EVENT_QEVENT_H */
-

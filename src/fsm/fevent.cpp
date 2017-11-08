@@ -2,7 +2,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2014 Walter Julius Hennecke
+ * Copyright (c) 2017 Walter Julius Hennecke
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,19 +26,18 @@
 
 #include "fevent.h"
 
-namespace gst {
-	namespace fsm {
+namespace gst::fsm
+{
+  fevent& fevent::operator =(const fevent& other)
+  {
+    m_id = other.m_id;
+    m_parameters = other.m_parameters;
 
-		fevent& fevent::operator =(const fevent& other) {
-			m_id = other.m_id;
-			m_parameters = other.m_parameters;
+    return *this;
+  }
 
-			return *this;
-		}
-
-		void fevent::setParameter(const std::string& name, const std::any& data) {
-			m_parameters.insert(std::make_pair(name, data));
-		}
-
-	}
+  void fevent::setParameter(const std::string& name, const std::any& data)
+  {
+    m_parameters.insert(std::make_pair(name, data));
+  }
 }

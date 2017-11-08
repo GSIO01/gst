@@ -2,7 +2,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2014 Walter Julius Hennecke
+ * Copyright (c) 2017 Walter Julius Hennecke
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,50 +24,78 @@
  *
  */
 
-#ifndef _GST_EVENT_PARAMETER_H
-#define	_GST_EVENT_PARAMETER_H
+#pragma once
 
 #include <string>
 #include <any>
 
 #include "../tools/api.h"
 
-namespace gst {
-	namespace event {
+namespace gst::event
+{
+  class parameter
+  {
+  public:
+    parameter() = default;
+    explicit parameter(const std::any& data) : m_data(data) {}
+    explicit parameter(std::any&& data) : m_data{std::move(data)} {}
 
-		class parameter {
-		public:
-			parameter();
-		  explicit parameter(const std::any& data);
-			parameter(const parameter& other);
-			parameter(const std::string& name, const std::string& description, const std::any& data = {});
-			virtual ~parameter();
-			parameter& operator =(const parameter& other);
-      parameter& operator =(const std::any& other);
+    parameter(const std::string& name, const std::string& description, const std::any& data = {})
+      : m_data(data)
+      , m_name(name)
+      , m_description(description) {}
 
-			const std::any& data() const;
-			const std::string& name() const;
-			const std::string& description() const;
-		private:
-		  std::any m_data;
-			std::string m_name;
-			std::string m_description;
-		};
+    virtual ~parameter() = default;
 
-		inline const std::any& parameter::data() const {
-			return m_data;
-		}
+    parameter(const parameter& Other)
+      : m_data{Other.m_data}
+      , m_name{Other.m_name}
+      , m_description{Other.m_description} {}
 
-		inline const std::string& parameter::name() const {
-			return m_name;
-		}
+    parameter(parameter&& Other) noexcept
+      : m_data{std::move(Other.m_data)}
+      , m_name{std::move(Other.m_name)}
+      , m_description{std::move(Other.m_description)} {}
 
-		inline const std::string& parameter::description() const {
-			return m_description;
-		}
+    parameter& operator=(const parameter& Other)
+    {
+      if (this == &Other)
+        return *this;
+      m_data = Other.m_data;
+      m_name = Other.m_name;
+      m_description = Other.m_description;
+      return *this;
+    }
 
-	}
+    parameter& operator=(parameter&& Other) noexcept
+    {
+      if (this == &Other)
+        return *this;
+      m_data = std::move(Other.m_data);
+      m_name = std::move(Other.m_name);
+      m_description = std::move(Other.m_description);
+      return *this;
+    }
+
+    parameter& operator =(std::any&& data)
+    {
+      m_data = std::move(data);
+      return *this;
+    }
+
+    parameter& operator =(const std::any& data)
+    {
+      m_data = data;
+      return *this;
+    }
+
+    const std::any& data() const { return m_data; }
+    const std::string& name() const { return m_name; }
+    const std::string& description() const { return m_description; }
+
+  private:
+    std::any m_data;
+    std::string m_name;
+    std::string m_description;
+  };
 }
-
-#endif	/* _GST_EVENT_PARAMETER_H */
-

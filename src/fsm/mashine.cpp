@@ -2,7 +2,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2014 Walter Julius Hennecke
+ * Copyright (c) 2017 Walter Julius Hennecke
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,27 +26,28 @@
 
 #include "mashine.h"
 
-namespace gst {
-	namespace fsm {
+namespace gst::fsm
+{
+  mashine& mashine::operator =(const mashine& other)
+  {
+    m_state = other.m_state;
+    m_transitiontable = other.m_transitiontable;
 
-		mashine& mashine::operator =(const mashine& other) {
-			m_state = other.m_state;
-			m_transitiontable = other.m_transitiontable;
+    return *this;
+  }
 
-			return *this;
-		}
+  bool mashine::processEvent(const fevent& ev)
+  {
+    for (auto& tr : m_transitiontable)
+    {
+      if (tr.state == m_state && tr.ev == ev.id())
+      {
+        m_state = tr.new_state;
+        tr.handeler(ev);
+        return true;
+      }
+    }
 
-		bool mashine::processEvent(const fevent& ev) {
-			for (auto& tr : m_transitiontable) {
-				if (tr.state == m_state && tr.ev == ev.id()) {
-					m_state = tr.new_state;
-					tr.handeler(ev);
-					return true;
-				}
-			}
-
-			return false;
-		}
-
-	}
+    return false;
+  }
 }

@@ -2,7 +2,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2014 Walter Julius Hennecke
+ * Copyright (c) 2017 Walter Julius Hennecke
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,7 @@
  *
  */
 
-#ifndef _GST_FSM_TRANSITION_H
-#define _GST_FSM_TRANSITION_H
+#pragma once
 
 #include <functional>
 #include <vector>
@@ -35,30 +34,26 @@
 
 #define TRANSITION(STATE,EVID,NEWSTATE,HANDLER) {STATE, EVID, NEWSATE, std::bind(&HANDLER, this, std::placeholders::_1)}
 
-namespace gst {
-	namespace fsm {
+namespace gst::fsm
+{
+  /**
+   * @brief Transition type.
+   */
+  typedef struct transition_s transition;
 
-		/**
-		 * @brief Transition type.
-		 */
-		typedef struct transition_s transition;
+  /**
+   * @brief Structure of transition.
+   */
+  struct transition_s
+  {
+    fsm_state state; //!< Current state
+    event_id ev; //!< Event id
+    fsm_state new_state; //!< New state for event id
+    std::function<void(const fevent&)> handeler; //!< Handler function to call.
+  };
 
-		/**
-		 * @brief Structure of transition.
-		 */
-		struct transition_s {
-			fsm_state state;								//!< Current state
-			event_id ev;									//!< Event id
-			fsm_state new_state;							//!< New state for event id
-			std::function<void(const fevent&)> handeler;	//!< Handler function to call.
-		};
-
-		/**
-		 * @brief Transition table type.
-		 */
-		typedef std::vector<transition> transition_table;
-
-	}
+  /**
+   * @brief Transition table type.
+   */
+  typedef std::vector<transition> transition_table;
 }
-
-#endif /* _GST_FSM_TRANSITION_H */

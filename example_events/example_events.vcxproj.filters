@@ -13,15 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\event">
-      <UniqueIdentifier>{9d73a181-812c-4878-a331-aae9ed3d388f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\event">
-      <UniqueIdentifier>{b1d8f273-081c-4207-b91b-e4f3fc374d13}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\types">
-      <UniqueIdentifier>{502e2d3a-cbc9-4a11-96d3-500df8b02988}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\examples\event\main.cpp">
@@ -30,46 +21,10 @@
     <ClCompile Include="..\src\examples\event\TestClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\event\listener.cpp">
-      <Filter>Source Files\event</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\event\manager.cpp">
-      <Filter>Source Files\event</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\event\parameter.cpp">
-      <Filter>Source Files\event</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\event\qevent.cpp">
-      <Filter>Source Files\event</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\event\queue.cpp">
-      <Filter>Source Files\event</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\examples\event\TestClass.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\event\events.h">
-      <Filter>Header Files\event</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\event\listener.h">
-      <Filter>Header Files\event</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\event\manager.h">
-      <Filter>Header Files\event</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\event\parameter.h">
-      <Filter>Header Files\event</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\event\qevent.h">
-      <Filter>Header Files\event</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\event\queue.h">
-      <Filter>Header Files\event</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\types\any.hpp">
-      <Filter>Header Files\types</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
