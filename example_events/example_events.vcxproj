@@ -81,23 +81,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\event\listener.cpp" />
-    <ClCompile Include="..\src\event\manager.cpp" />
-    <ClCompile Include="..\src\event\parameter.cpp" />
-    <ClCompile Include="..\src\event\qevent.cpp" />
-    <ClCompile Include="..\src\event\queue.cpp" />
     <ClCompile Include="..\src\examples\event\main.cpp" />
     <ClCompile Include="..\src\examples\event\TestClass.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\event\events.h" />
-    <ClInclude Include="..\src\event\listener.h" />
-    <ClInclude Include="..\src\event\manager.h" />
-    <ClInclude Include="..\src\event\parameter.h" />
-    <ClInclude Include="..\src\event\qevent.h" />
-    <ClInclude Include="..\src\event\queue.h" />
     <ClInclude Include="..\src\examples\event\TestClass.h" />
-    <ClInclude Include="..\src\types\any.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

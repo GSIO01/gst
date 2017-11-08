@@ -16,21 +16,14 @@
     <ClInclude Include="..\src\event\manager.h" />
     <ClInclude Include="..\src\event\parameter.h" />
     <ClInclude Include="..\src\event\qevent.h" />
-    <ClInclude Include="..\src\event\queue.h" />
     <ClInclude Include="..\src\fsm\fevent.h" />
     <ClInclude Include="..\src\fsm\fsm.h" />
     <ClInclude Include="..\src\fsm\mashine.h" />
     <ClInclude Include="..\src\fsm\transition.h" />
     <ClInclude Include="..\src\tools\api.h" />
-    <ClInclude Include="..\src\types\databuffer.hpp" />
     <ClInclude Include="..\src\types\property.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\event\listener.cpp" />
-    <ClCompile Include="..\src\event\manager.cpp" />
-    <ClCompile Include="..\src\event\parameter.cpp" />
-    <ClCompile Include="..\src\event\qevent.cpp" />
-    <ClCompile Include="..\src\event\queue.cpp" />
     <ClCompile Include="..\src\fsm\fevent.cpp" />
     <ClCompile Include="..\src\fsm\mashine.cpp" />
   </ItemGroup>

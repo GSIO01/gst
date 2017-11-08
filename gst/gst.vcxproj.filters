@@ -19,20 +19,11 @@
     <Filter Include="Header Files\event">
       <UniqueIdentifier>{e4c5ae38-e3b5-483a-9bd2-c69e7e3c2b6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\event">
-      <UniqueIdentifier>{68273eca-b0df-4901-88c7-fa99defb106d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\fsm">
       <UniqueIdentifier>{14428948-3cfa-414e-a69b-76b64df0bcc5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\fsm">
       <UniqueIdentifier>{a56fecb5-d6cc-4ed8-ae4e-a69d081c54d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\tree">
-      <UniqueIdentifier>{1dd01c5e-d3ed-47cf-9fb1-d33ed7e472bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tree">
-      <UniqueIdentifier>{d7ece34e-9e5b-4159-8f73-cfd759041741}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\tools">
       <UniqueIdentifier>{88a62a39-759d-4cae-a9f0-46266ddd27a2}</UniqueIdentifier>
@@ -49,9 +40,6 @@
       <Filter>Header Files\event</Filter>
     </ClInclude>
     <ClInclude Include="..\src\event\qevent.h">
-      <Filter>Header Files\event</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\event\queue.h">
       <Filter>Header Files\event</Filter>
     </ClInclude>
     <ClInclude Include="..\src\fsm\fevent.h">
@@ -75,31 +63,13 @@
     <ClInclude Include="..\src\types\property.hpp">
       <Filter>Header Files\types</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\types\databuffer.hpp">
-      <Filter>Header Files\types</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\event\listener.cpp">
-      <Filter>Source Files\event</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\event\manager.cpp">
-      <Filter>Source Files\event</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\event\qevent.cpp">
-      <Filter>Source Files\event</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\event\queue.cpp">
-      <Filter>Source Files\event</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\fsm\fevent.cpp">
       <Filter>Source Files\fsm</Filter>
     </ClCompile>
     <ClCompile Include="..\src\fsm\mashine.cpp">
       <Filter>Source Files\fsm</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\event\parameter.cpp">
-      <Filter>Source Files\event</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2014 Walter Julius Hennecke
+ * Copyright (c) 2017 Walter Julius Hennecke
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,112 +24,97 @@
  *
  */
 
-#ifndef _GST_FSM_FEVENT_H
-#define _GST_FSM_FEVENT_H
+#pragma once
 
 #include <map>
 #include <any>
 
 #include "../tools/api.h"
 
-namespace gst
+namespace gst::fsm
 {
-  namespace fsm
+  /**
+   * @brief Event id.
+   */
+  typedef unsigned long event_id;
+
+  /**
+   * @brief A event for the finite state mashine.
+   */
+  class fevent
   {
+  public:
+    /**
+     * @brief Constructor.
+     * @param id The event id.
+     * @param parameters Optional parameters.
+     */
+    explicit fevent(event_id id = 0, const std::map<std::string, std::any>& parameters = {})
+      : m_parameters(parameters)
+      , m_id(id) { }
 
     /**
-     * @brief Event id.
+     * @brief Copy constructor.
+     * @param other Object to copy.
      */
-    typedef unsigned long event_id;
+    fevent::fevent(const fevent& other)
+      : m_parameters(other.m_parameters)
+      , m_id(other.m_id) { }
 
     /**
-     * @brief A event for the finite state mashine.
+     * @brief Destructor.
      */
-    class fevent
+    virtual ~fevent() { }
+
+    /**
+     * @brief Assignment operator.
+     * @param other Object to assign.
+     * @return This object.
+     */
+    fevent& operator =(const fevent& other);
+
+    /**
+     * @brief Get the event id.
+     * @return Event id.
+     */
+    event_id id() const
     {
-    public:
-      /**
-       * @brief Constructor.
-       * @param id The event id.
-       * @param parameters Optional parameters.
-       */
-      explicit fevent(event_id id = 0, const std::map<std::string, std::any>& parameters = {})
-        : m_parameters(parameters)
-        , m_id(id)
-      {
-      }
+      return m_id;
+    }
 
-      /**
-       * @brief Copy constructor.
-       * @param other Object to copy.
-       */
-      fevent::fevent(const fevent& other)
-        : m_parameters(other.m_parameters)
-        , m_id(other.m_id)
-      {
-      }
+    /**
+     * @brief Modify an existing or add a new parameter.
+     * @param name Parameter name.
+     * @param data Parameter data.
+     */
+    void setParameter(const std::string& name, const std::any& data);
 
-      /**
-       * @brief Destructor.
-       */
-      virtual ~fevent()
-      {
-      }
+    /**
+     * @brief Extract the value for a parameter.
+     * @param name Parameter name.
+     * @return Converted parameter.
+     */
+    template <typename T>
+    T parameter(const char* name) const
+    {
+      std::string sname(name);
 
-      /**
-       * @brief Assignment operator.
-       * @param other Object to assign.
-       * @return This object.
-       */
-      fevent& operator =(const fevent& other);
+      return std::any_cast<T>(m_parameters.at(sname));
+    }
 
-      /**
-       * @brief Get the event id.
-       * @return Event id.
-       */
-      event_id id() const
-      {
-        return m_id;
-      }
+    /**
+     * @brief Extract the value for a parameter.
+     * @param name Parameter name.
+     * @return Converted parameter.
+     */
+    template <typename T>
+    T parameter(const std::string& name) const
+    {
+      return std::any_cast<T>(m_parameters.at(name));
+    }
 
-      /**
-       * @brief Modify an existing or add a new parameter.
-       * @param name Parameter name.
-       * @param data Parameter data.
-       */
-      void setParameter(const std::string& name, const std::any& data);
-
-      /**
-       * @brief Extract the value for a parameter.
-       * @param name Parameter name.
-       * @return Converted parameter.
-       */
-      template<typename T>
-      T parameter(const char* name) const
-      {
-        std::string sname(name);
-
-        return std::any_cast<T>(m_parameters.at(sname));
-      }
-
-      /**
-       * @brief Extract the value for a parameter.
-       * @param name Parameter name.
-       * @return Converted parameter.
-       */
-      template<typename T>
-      T parameter(const std::string& name) const
-      {
-
-        return std::any_cast<T>(m_parameters.at(name));
-      }
-
-    private:
-      std::map<std::string, std::any> m_parameters;
-      event_id m_id;
-    };
-
-  }
+  private:
+    std::map<std::string, std::any> m_parameters;
+    event_id m_id;
+  };
 }
-
-#endif /* _GST_FSM_FEVENT_H */

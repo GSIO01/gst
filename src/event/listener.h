@@ -2,7 +2,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2014 Walter Julius Hennecke
+ * Copyright (c) 2017 Walter Julius Hennecke
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,37 +23,69 @@
  * THE SOFTWARE.
  *
  */
-#ifndef _GST_EVENT_LISTENER_H
-#define	_GST_EVENT_LISTENER_H
+
+#pragma once
 
 #include "../tools/api.h"
 #include "qevent.h"
-#include "queue.h"
+#include <queue>
 
-namespace gst {
-	namespace event {
+namespace gst::event
+{
+  class listener
+  {
+  public:
+    explicit listener(qevent::target_id id = 0) : m_id{id} {}
 
-		class listener {
-			public:
-		  explicit listener(qevent::target_id id = 0);
-			listener(const listener& other);
-			virtual ~listener();
-			listener& operator =(const listener& other);
+    listener(const listener& Other)
+      : m_queue{Other.m_queue}
+      , m_id{Other.m_id} {}
 
-			void appendQueue(const queue& q);
-			void queueEvent(const qevent& ev);
-			const queue& getQueue() const;
-			virtual void registerEvents() = 0;
-			virtual void progressEvents() = 0;
-			qevent::target_id id() const;
-			void setID(qevent::target_id id);
-			protected:
-			queue m_queue;
-			qevent::target_id m_id;
-		};
+    listener(listener&& Other) noexcept
+      : m_queue{std::move(Other.m_queue)}
+      , m_id{Other.m_id} {}
 
-	}
+    virtual ~listener() = default;
+
+    listener& operator=(const listener& Other)
+    {
+      if (this == &Other)
+        return *this;
+      m_queue = Other.m_queue;
+      m_id = Other.m_id;
+      return *this;
+    }
+
+    listener& operator=(listener&& Other) noexcept
+    {
+      if (this == &Other)
+        return *this;
+      m_queue = std::move(Other.m_queue);
+      m_id = Other.m_id;
+      return *this;
+    }
+
+    void appendQueue(const std::queue<qevent>& q)
+    {
+      auto t = q;
+      while (!t.empty())
+      {
+        m_queue.push(t.front());
+        t.pop();
+      }
+    }
+
+    void queueEvent(const qevent& ev) { m_queue.push(ev); }
+    const std::queue<qevent>& getQueue() const { return m_queue; }
+
+    virtual void registerEvents() {}
+
+    virtual bool progressEvents() { return false; }
+    qevent::target_id id() const { return m_id; }
+    void setID(qevent::target_id id) { m_id = id; }
+  protected:
+    std::queue<qevent> m_queue;
+    qevent::target_id m_id;
+    virtual std::string getEventInfo() { return ""; }
+  };
 }
-
-#endif	/* _GST_EVENT_LISTENER_H */
-
