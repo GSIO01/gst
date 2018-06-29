@@ -29,7 +29,7 @@
 namespace gst {
 	namespace fsm {
 
-		parameter::parameter(const any& data) :
+		parameter::parameter(const std::any& data) :
 			m_data(data) {
 		}
 

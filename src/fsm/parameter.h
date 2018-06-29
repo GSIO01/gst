@@ -27,23 +27,23 @@
 #ifndef _GST_FSM_PARAMETER_H
 #define _GST_FSM_PARAMETER_H
 
-#include "../types/any.hpp"
+#include <any>
 
 namespace gst {
 	namespace fsm {
 
 		class parameter {
 			public:
-			parameter(const any& data);
+			parameter(const std::any& data);
 			parameter(const parameter& other);
 			virtual ~parameter();
 			parameter& operator =(const parameter& other);
 
-			const any& data() {
+			const std::any& data() {
 				return m_data;
 			}
 			private:
-			any m_data;
+			std::any m_data;
 		};
 
 	}

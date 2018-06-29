@@ -2,7 +2,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Walter Julius Hennecke
+ * Copyright (c) 2018 Walter Julius Hennecke
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@
 #include "fevent.h"
 #include "fsm.h"
 
-#define TRANSITION(STATE,EVID,NEWSTATE,HANDLER) {STATE, EVID, NEWSATE, std::bind(&HANDLER, this, std::placeholders::_1)}
+#define TRANSITION(STATE,EVID,NEWSTATE,HANDLER) {STATE, EVID, NEWSTATE, std::bind(&HANDLER, this, std::placeholders::_1)}
 
 namespace gst::fsm
 {
