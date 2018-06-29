@@ -2,7 +2,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Walter Julius Hennecke
+ * Copyright (c) 2018 Walter Julius Hennecke
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,9 +27,9 @@
 #ifndef _TEST_FSM_H
 #define _TEST_FSM_H
 
-#include <fsm/mashine.h>
+#include <fsm/machine.h>
 
-class test_fsm : public gst::fsm::mashine {
+class test_fsm : public gst::fsm::machine {
 	public:
 	enum states {
 		STATE_IDLE,

@@ -2,7 +2,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Walter Julius Hennecke
+ * Copyright (c) 2018 Walter Julius Hennecke
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,6 @@
 #include <string>
 #include <any>
 
-#include "../tools/api.h"
 
 namespace gst::event
 {
