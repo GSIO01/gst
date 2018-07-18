@@ -34,9 +34,9 @@ namespace gst {
 
 		class parameter {
 			public:
-			parameter(const std::any& data);
-			parameter(const parameter& other);
-			virtual ~parameter();
+      explicit parameter(const std::any& data);
+			parameter(const parameter& other) = default;
+			virtual ~parameter() = default;
 			parameter& operator =(const parameter& other);
 
 			const std::any& data() {

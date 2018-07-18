@@ -37,19 +37,14 @@
 namespace gst::fsm
 {
   /**
-   * @brief Transition type.
-   */
-  typedef struct transition_s transition;
-
-  /**
    * @brief Structure of transition.
    */
-  struct transition_s
+  struct transition
   {
     fsm_state state; //!< Current state
     event_id ev; //!< Event id
     fsm_state new_state; //!< New state for event id
-    std::function<void(const fevent&)> handeler; //!< Handler function to call.
+    std::function<void(const fevent&)> handler; //!< Handler function to call.
   };
 
   /**

@@ -28,14 +28,6 @@
 
 namespace gst::fsm
 {
-  machine& machine::operator =(const machine& other)
-  {
-    m_state = other.m_state;
-    m_transitiontable = other.m_transitiontable;
-
-    return *this;
-  }
-
   bool machine::processEvent(const fevent& ev)
   {
     for (auto& tr : m_transitiontable)
@@ -43,7 +35,7 @@ namespace gst::fsm
       if (tr.state == m_state && tr.ev == ev.id())
       {
         m_state = tr.new_state;
-        tr.handeler(ev);
+        tr.handler(ev);
         return true;
       }
     }

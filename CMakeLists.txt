@@ -17,7 +17,7 @@ set(SRC_PUBLIC_HEADERS
 				src/fsm/machine.h
 				src/fsm/parameter.h
 				src/fsm/transition.h
-				src/types/property.hpp)
+		src/event2/event2.h)
 
 # source files and private header files
 set(SRC_FILES
@@ -41,3 +41,7 @@ target_include_directories(event_example PUBLIC src)
 add_executable(fsm_example examples/fsm/main.cpp examples/fsm/test_fsm.h examples/fsm/test_fsm.cpp)
 target_link_libraries(fsm_example gstStatic)
 target_include_directories(fsm_example PUBLIC src)
+
+add_executable(event2_example examples/evemt2/main.cpp)
+target_link_libraries(event2_example gstStatic)
+target_include_directories(event2_example PUBLIC src)

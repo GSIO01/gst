@@ -28,15 +28,7 @@
 
 namespace gst::fsm
 {
-  fevent& fevent::operator =(const fevent& other)
-  {
-    m_id = other.m_id;
-    m_parameters = other.m_parameters;
-
-    return *this;
-  }
-
-  void fevent::setParameter(const std::string& name, const std::any& data)
+  void fevent::setParameter(const std::string &name, const std::any &data)
   {
     m_parameters.insert(std::make_pair(name, data));
   }

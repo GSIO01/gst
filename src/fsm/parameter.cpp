@@ -33,13 +33,6 @@ namespace gst {
 			m_data(data) {
 		}
 
-		parameter::parameter(const parameter& other) :
-			m_data(other.m_data) {
-		}
-
-		parameter::~parameter() {
-		}
-
 		parameter& parameter::operator =(const parameter& other) {
 			m_data = other.m_data;
 

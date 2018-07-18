@@ -26,6 +26,7 @@
 
 #pragma once
 
+#include <utility>
 #include "fsm.h"
 #include "fevent.h"
 #include "transition.h"
@@ -38,35 +39,32 @@ namespace gst::fsm
   class machine
   {
   public:
-    machine() = default;
+    machine() : m_state{} {}
 
     /**
      * @brief Constructor.
      */
-    explicit machine(fsm_state state, const transition_table &transition_tab)
-      : m_transitiontable(transition_tab), m_state(state)
+    explicit machine(fsm_state state, transition_table transition_tab)
+      : m_transitiontable(std::move(transition_tab)), m_state(state)
     {}
 
     /**
      * @brief Copy constructor.
      * @param other Object to copy.
      */
-    machine(const machine &other)
-      : m_transitiontable(other.m_transitiontable), m_state(other.m_state)
-    {}
+    machine(const machine &other) = default;
 
     /**
      * @brief Destructor.
      */
-    virtual ~machine()
-    {}
+    virtual ~machine() = default;
 
     /**
      * @brief Assignment operator.
      * @param other Object to assign.
      * @return This object.
      */
-    machine &operator=(const machine &other);
+    machine &operator=(const machine &other) = default;
 
     /**
      * @brief Get the current state of the finite state mashine.

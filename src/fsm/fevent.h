@@ -28,7 +28,7 @@
 
 #include <map>
 #include <any>
-
+#include <utility>
 namespace gst::fsm
 {
   /**
@@ -47,29 +47,27 @@ namespace gst::fsm
      * @param id The event id.
      * @param parameters Optional parameters.
      */
-    explicit fevent(event_id id = 0, const std::map<std::string, std::any>& parameters = {})
-      : m_parameters(parameters)
+    explicit fevent(event_id id = 0, std::map<std::string, std::any> parameters = {})
+      : m_parameters(std::move(parameters))
       , m_id(id) { }
 
     /**
      * @brief Copy constructor.
      * @param other Object to copy.
      */
-    fevent(const fevent& other)
-      : m_parameters(other.m_parameters)
-      , m_id(other.m_id) { }
+    fevent(const fevent& other) = default;
 
     /**
      * @brief Destructor.
      */
-    virtual ~fevent() { }
+    virtual ~fevent() = default;
 
     /**
      * @brief Assignment operator.
      * @param other Object to assign.
      * @return This object.
      */
-    fevent& operator =(const fevent& other);
+    fevent& operator =(const fevent& other) = default;
 
     /**
      * @brief Get the event id.
